@@ -78,19 +78,23 @@
 					$query = "SELECT * FROM videogame WHERE id_categoria=$categoria"; 
 					//ejecutar consulta:
 					$result = mysqli_query($link, $query) or die("La consulta falló: " . mysqli_error($link));
-					$i=1;
 					while($row = mysqli_fetch_array($result)) { 
 						$id_juego=$row["id_vj"];
-						$stock=$row["stock"];
-						
+						$stock=$row["stock"];						
 						echo "
-							<article name='vg".$id_juego."' title='".$row["descripcion"]."    Stock:".$row["stock"]."'>
+							<article name='vg".$id_juego."' title='".$row["descripcion"]."    Stock: $stock'>
 								<a href='vg_individual.php?juegos=$id_juego'><img name='juegos' value='$id_juego' src='".$row["imagen"]."' height=240px width=100% /></a>
 								Precio por Día:".$row["precio_dia"]."<br/>
 								Consola:".$row["consola"]."<br/>
-								<input name='vg".$id_juego."' type='checkbox' value='vg".$id_juego."' />".$row["nombre"]."
-							</article>  ";
-						$i++;
+							";
+							//session_start();
+							if(isset($_SESSION["session_username"])) {
+								echo "<input name='vg".$id_juego."' type='checkbox' value='vg".$id_juego."' />".$row["nombre"]."";	
+							}
+							else{
+								echo "Nombre: ".$row["nombre"]."";
+							}								
+							echo "</article>  ";
 					}	 	
 				?>
 
