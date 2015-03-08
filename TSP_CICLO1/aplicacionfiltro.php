@@ -18,7 +18,12 @@
 						<?php
 							session_start();
 							if(!isset($_SESSION["session_username"])) {
-								header("location:aplicacion.php");
+								echo "
+								<div id='visitante' >
+								<h2>Bienvenido Visitante</h2>
+								<p>Eres nuevo? <a href='registrar.php' >Registrate Aquí</a>!</p>
+								</div>
+								";
 							} 
 							else {
 						?>
@@ -30,19 +35,6 @@
 								<?php
 							}
 						?>						
-						<!--<ul>
-							<li>
-								<label for="cedula">Cedula</label>
-								<input type="number" name="cedula" id="cedula" placeholder="123456" autofocus="autofocus" required="required" min="1" maxlength="40" />
-							</li>
-							<li>
-								<label for="pass">Password</label>
-								<input type="password" name="pass" id="pass" placeholder="****"  required="required"  min="1" maxlength="15" />
-							</li>
-							<input type="submit" name="login" value="LOGIN" />
-							<input type="reset" name="reiniciar" value="Reiniciar">
-							<p>Eres nuevo? <a href="registrar.php" >Registrate Aquí</a>!</p>
-						</ul> -->
 					</fieldset>	
 				</div>
 			</header>
